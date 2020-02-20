@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>就业薪水:{{money}}</p>
+        <!-- 不用v-model 用v-bind和v-on组合 得到双向数据绑定效果 -->
+        <!-- @change只能在失去焦点的时候执行 -->
+        <input type="text" :value="money" @input="changeInput">
+        <!-- 监听数据的改变 -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                money: '12k'
+            },
+            methods: {
+                changeInput(event) {
+                    //this永远指向vm实例 =>是vuejs内部实现的
+                    //如果当前函数是箭头函数: this就会指向父级作用域window
+                    //拿到值后,直接赋值给数据
+                    this.money = event.target.value;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
