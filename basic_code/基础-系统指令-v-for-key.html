@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- 需要在v-for的时候,给每一个循环加一个 key属性 => 保证每个选项是不同的(比如索引获取id) -->
+            <!-- :属性="变量" 表示获取的是后面的变量的值,而不是一个字符串-->
+            <!--
+                这个东西是看不出效果的,但是我们写代码过程中,要养成v-for时,写key的习惯
+                =>优化vuejs内部的算法 
+             -->
+            <li v-for="(item,index) in list" :key="index">{{item}}</li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: ["肖战", "王一博", "吴彦祖", "谢霆锋"]
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
