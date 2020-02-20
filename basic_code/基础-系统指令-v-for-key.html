@@ -17,6 +17,7 @@
                 这个东西是看不出效果的,但是我们写代码过程中,要养成v-for时,写key的习惯
                 =>优化vuejs内部的算法 
              -->
+            <!-- list数据变化=>数据变化=>vuejs内部算法diff(比较) =>视图发生变化-->
             <li v-for="(item,index) in list" :key="index">{{item}}</li>
         </ul>
     </div>
