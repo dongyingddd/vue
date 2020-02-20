@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 插值表达式 -->
+        <p>{{man}}</p>
+        <!-- 
+            v-model 作用于表单元素 语法v-model="变量" 
+            双向绑定: 数据变化=>视图变化 视图变化=>数据变化
+        -->
+        <input type="text" v-model="man" />
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                man: '陈江华'
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
