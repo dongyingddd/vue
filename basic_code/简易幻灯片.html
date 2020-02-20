@@ -39,20 +39,23 @@
                 //开始播放 在间隔相等的时间内更换索引
                 start() {
                     //定义一个每隔一定时间就执行的函数
-                    let func = () => {
-                        //更换索引 5条记录 索引下标最大值 长度-1 如果到达了最大值
-                        if (this.currentIndex < this.list.length - 1) {
-                            //只有小于最大长度的时候,才能++
-                            this.currentIndex++;
-                        } else {
-                            this.currentIndex = 0;
+                    if (!this.flag) {
+                        let func = () => {
+                            //更换索引 5条记录 索引下标最大值 长度-1 如果到达了最大值
+                            if (this.currentIndex < this.list.length - 1) {
+                                //只有小于最大长度的时候,才能++
+                                this.currentIndex++;
+                            } else {
+                                this.currentIndex = 0;
+                            }
                         }
+                        this.flag = setInterval(func, 1000);
                     }
-                    this.flag = setInterval(func, 1000);
                 },
                 stop() {
                     //结束轮播的时候,需要清除定时器
                     clearInterval(this.flag);
+                    this.flag = null;
                 }
             }
         });
