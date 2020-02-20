@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- v-for指令 item(自定义的变量名) in items(data中的变量) -->
+            <li v-for="item in list">
+                <div>
+                    <span>男生的梦中情人:</span> {{item}}
+                </div>
+            </li>
+        </ul>
+        <h1>女生男神排行榜</h1>
+        <div>
+            <div v-for="(item,index) in manlist">
+                <span style="font-style: 20px; color: red; font-weight: bold;">女生男神排行榜第{{index+1}}位</span>
+                <span style="color: blue;font-size: 40px;">{{item.name}}</span> <br>
+                <img style="width: 300px;height: 300px;" :src="item.img" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: ['貂蝉', '朱丽叶', '乔碧萝', '慧伦特休斯顿'],
+                manlist: [
+                    { name: '肖战', img: 'http://imgsrc.baidu.com/forum/w=580/sign=3196df5d8dd6277fe912323018391f63/572f130828381f305fb3c64fa3014c086f06f0ab.jpg' },
+                    { name: '王一博', img: 'http://mp0.iqiyipic.com/image/20180724/0f/65/ppu_402679760202_pp_601_300_300.jpg' },
+                    { name: '宋小宝', img: 'http://www.sinaimg.cn/dy/slidenews/4_img/2012_07/703_573035_663758.jpg' }
+                ]
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
