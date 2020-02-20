@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础-实例选项-el</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 插值表达式 -->
+        <!-- data中的变量在视图中用{{ }} 显示出来,
+            {{ }}直接写data中的变量或者是methods中中函数即可-->
+        <p>{{name}}-{{message}}</p>
+        <p>{{money}}</p>
+        <p>{{list}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        //实例和视图是1对1的
+        //一般项目中只有一个实例, el一般都会用id选择器
+        var vm = new Vue({
+            //el: 指的是Vue实例所管理的视图
+            //可以是id,class,dom
+            el: '#app',
+            //响应式数据=> 数据变化=>视图就会更新
+            data: {
+                name: "冬冬",
+                message: '天生我材必有用',
+                money: 13000,
+                list: ["盖茨", "巴菲特", "贝索斯"]
+            },
+            methods: {
+                getName() {
+                    //this指向vm实例
+                    //可以在methods中直接用this.属性  this.方法
+                    console.log(this.name);
+                    this.getMessage();
+                },
+                getMessage() {
+                    console.log(this.message);
+
+                }
+            }
+        });
+        vm.message = "千金散尽还复来";
+        vm.money = 15000;
+        vm.list = ["盖茨", "巴菲特", "贝索斯", "我"];
+        vm.getName();
+    </script>
+</body>
+
+</html>
