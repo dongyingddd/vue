@@ -50,11 +50,12 @@
           </thead>
           <tbody>
             <tr v-for="(item,index) in list">
-              <td>{{index}}</td>
+              <td>{{index+1}}</td>
               <td>{{item.name}}</td>
               <td>{{item.date}}</td>
               <td>
-                <a href="#">删除</a>
+                <!-- 给删除注册事件 给事件加修饰符 阻止默认跳转事件-->
+                <a href="#" @click.prevent="delItem(index)">删除</a>
               </td>
             </tr>
             <tr v-if="!list.length">
@@ -88,6 +89,21 @@
           this.list.unshift({ name: this.name, date: new Date() });
           //清空输入框
           this.name = ''
+        },
+        delItem(i) {
+          //需要知道删除谁
+          //根据索引从数组中移除数据
+          if (confirm("您是否要删除此条数据?")) {
+            //如果确定删除了
+            //方法1:
+            // this.list.splice(i, 1);//移除数据
+            //方法2: filter方法 filter(function(){return 条件表达式(true=>元素就会返回插入新数组)})
+            // this.list = this.list.filter(function (item, index) {
+            //   return index != i;
+            // });
+            //方法3:
+            this.list = this.list.filter((item, index) => index !== i);
+          }
         }
       }
 
