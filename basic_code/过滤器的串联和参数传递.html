@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <!-- 
+        实现一个过滤器, 根据传入的索引值 找到对应的字符串 转成大写 并显示
+    -->
+    <div id="app">
+        <!-- 过滤器的串联 -->
+        <p> {{name | transUpper(3) | reverseStr}}</p>
+        <input type="text" v-model="name">
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'abcd'
+            },
+            methods: {},
+            filters: {
+                //第一个过滤器
+                //根据传入的索引值 找到对应的字符串 转成大写 并显示
+                //value: 过滤器的第一个参数=>管道前面表达式结算的结果
+                transUpper: function (value, i) {
+                    return value.split("").map(function (item, index) {
+                        //如果找到了第i个,就把第i个转成大写
+                        if (index === i) {
+                            return item.toUpperCase();
+                        }
+                        return item;//别的字符不动
+                    }).join("");
+                },
+                //第二个过滤器:
+                //写一个字符串翻转的过滤器
+                reverseStr(value) {
+                    return value.split("").reverse().join("");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
