@@ -22,9 +22,13 @@
         <!-- 添加框 -->
         <div class="form-inline">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="请输入你理想的公司" />
+            <!-- v-model就可以双向同步 数据就是视图,视图就是数据 -->
+            <!--  v-model.trim 的目的是去掉空格-->
+            <input type="text" class="form-control" placeholder="请输入你理想的公司" v-model.trim="name" />
           </div>
-          <button class="btn btn-success" type="submit">添加</button>
+          <!-- 注册点击事件 -->
+          <!-- disabled 是一个变化的属性 -->
+          <button @click="addItem" :disabled="!name" class=" btn btn-success" type="submit">添加</button>
         </div>
         <!-- 搜索框 -->
         <div class="form-inline" style="margin: 20px 0">
@@ -68,12 +72,23 @@
       el: '.container-fluid',
       //响应式数据
       data: {
+        name: '',//作为双向绑定的数据
         //表格数据
         list: [
           { name: '阿里巴巴', date: new Date() },
           { name: '字节跳动', date: new Date() },
           { name: '腾讯', date: new Date() },
         ]
+      },
+      methods: {
+        //添加数据
+        addItem() {
+          //添加数据
+          //unshift => 数组的方法 在数据的头部添加数据
+          this.list.unshift({ name: this.name, date: new Date() });
+          //清空输入框
+          this.name = ''
+        }
       }
 
     });
