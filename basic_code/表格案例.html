@@ -28,12 +28,12 @@
           </div>
           <!-- 注册点击事件 -->
           <!-- disabled 是一个变化的属性 -->
-          <button @click="addItem" :disabled="!name" class=" btn btn-success" type="submit">添加</button>
+          <button @click=" addItem" :disabled="!name" class=" btn btn-success" type="submit">添加</button>
         </div>
         <!-- 搜索框 -->
         <div class="form-inline" style="margin: 20px 0">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="搜索关键字" />
+            <input type="text" class="form-control" placeholder="搜索关键字" v-model="serachVal" />
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
             <th>操作</th>
           </thead>
           <tbody>
-            <tr v-for="(item,index) in list">
+            <tr v-for="(item,index) in filterList">
               <td>{{index+1}}</td>
               <td>{{item.name}}</td>
               <!-- 通过过滤器对日期进行过滤 -->
@@ -76,6 +76,7 @@
       el: '.container-fluid',
       //响应式数据
       data: {
+        serachVal: '',//作为绑定搜索框的值
         name: '',//作为双向绑定的数据
         //表格数据
         list: [
@@ -110,12 +111,14 @@
         }
 
       },
+      //过滤器
       filters: {
         //格式化日期的过滤器  value就是我们的日期
         formatDate(value) {
           return moment(value).format("YYYY-MM-DD HH:mm:ss");
         }
       },
+      //自定义指令
       directives: {
         focus: {
           inserted(dom, option) {
@@ -124,6 +127,21 @@
           update(dom, option) {
 
           }
+        }
+      },
+      //计算属性
+      //计算属性必须要有返回值
+      computed: {
+        //通过当前输入的搜索内容和列表内容 筛选出我们要的结果
+        filterList() {
+          //this指向vm实例
+          //数组 this.list 
+          //关键字 this.serachVal
+          //实现搜素功能  在一个数组中搜索和关键字相关的数据
+          return this.list.filter(item => {
+            //筛选条件 返回一个条件表达式
+            return item.name.includes(this.serachVal)
+          })
         }
       }
 
