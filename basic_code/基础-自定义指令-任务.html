@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+        任务: 实现一个可以自动聚焦的指令 
+    -->
+    <div id="app">
+        <input type="text" v-focus>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            directives: {
+                'focus': {
+                    //当指令作用的元素被创建的时候执行
+                    inserted(dom, option) {
+                        //dom就是一个表单的对象
+                        //focus()方法用于文本域获取焦点
+                        dom.focus(); //调用聚焦方法
+                    },
+                    update(dom, options) {
+
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
