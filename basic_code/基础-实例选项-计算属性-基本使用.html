@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 插值表达式 运算 方法 -->
+        <p>{{name.split("").reverse().join("")}}</p>
+        <!-- 方法 -->
+        <p>{{reverse()}}</p>
+        <p>{{reverse()}}</p>
+        <!-- 计算属性 -->
+        <p>{{reverseStr}}</p>
+        <p>{{reverseStr}}</p>
+        <input type="text" v-model="name">
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '我爱北京天安门'
+            },
+            methods: {
+                reverse() {
+                    console.log("执行方法");
+                    return this.name.split("").reverse().join("");
+                }
+            },
+            //所有的计算属性都写在computed中
+            computed: {
+                //效率更高,有一个缓存机制
+                //当我们需要在页面上展示过于复杂的计算结果的时候,可以考虑封装计算属性
+                //计算属性不能和方法重名 不能和data中的数据同名
+                reverseStr() {
+                    console.log("执行计算属性");
+                    //this指向vm实例 计算属性必须有返回值
+                    return this.name.split("").reverse().join("");
+                }
+
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+</html>
