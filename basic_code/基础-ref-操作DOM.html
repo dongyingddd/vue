@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        任务: 通过ref功能,点击按钮时获取input的value值 
+        1. 实例化Vue实例
+        2. 定义input的ref属性
+        3. 注册按钮事件
+        4. 按钮事件中通过ref获取input的value内容
+     -->
+    <div id="app">
+        <!-- 写一个input标签 定义一个ref属性 -->
+        <input type="text" ref="myInput">
+        <button @click="getValue">按钮</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                getValue() {
+                    //获取input的value内容
+                    console.dir(this.$refs.myInput.value);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
