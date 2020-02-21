@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- vue实例化之前,插值表达式还没有渲染 -->
+    <!-- v-cloak指令 可以在渲染完成之后 自动将v-cloak指令解除 -->
+    <div id="app" v-cloak>
+        <div style="font-size: 30px;color: red;">
+            {{name}}
+        </div>
+        <div>{{msg}}</div>
+        <div>{{tip}}</div>
+        <!-- v-once -->
+        <p>{{money}}</p>
+        <!-- 写一个v-one 意味着该视图将不会再更新 -->
+        <!-- 注意: 千万不要在你的根元素上写v-once 因为写之后,意味着所有标签都失效了,就会造成整个视图没有更新 -->
+        <p v-once>{{money}}</p>
+        <input type="text" v-model="money">
+
+        <!-- v-pre -->
+        <!-- 如果你就想显示{{name}} 跳过对该元素的编译 -->
+        <div v-pre>{{name}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '终南山院士真乃国士无双',
+                msg: '挺住,咱们快解封了',
+                tip: '成年人要为自己的言行负责哦',
+                money: '5000'
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
